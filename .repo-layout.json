@@ -1,0 +1,24 @@
+{
+  "allow": [
+    {
+      "path": "skills",
+      "why": "the Agent Skills, one folder each: the specification and every installer (Claude Code, npx skills) read skills/ at the root"
+    },
+    {
+      "path": "agents",
+      "why": "the subagents (Claude Code agents/*.md), installed by the krizaka-engineering plugin"
+    },
+    {
+      "path": ".claude-plugin",
+      "why": "the Claude Code plugin marketplace: /plugin marketplace add reads .claude-plugin/marketplace.json at the root"
+    },
+    {
+      "path": "schemas",
+      "why": "the JSON Schemas of the skill and subagent front matter, public so contributors and other tools can reuse them"
+    },
+    {
+      "path": ".markdownlint-cli2.jsonc",
+      "why": "markdownlint-cli2 reads its configuration from the repository root"
+    }
+  ]
+}
