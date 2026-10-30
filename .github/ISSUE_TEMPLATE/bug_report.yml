@@ -1,0 +1,23 @@
+name: Bug report
+description: A skill gives wrong guidance, fails to load, or the marketplace does not install.
+labels: ["type:fix"]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill, subagent or plugin
+    validations:
+      required: true
+  - type: input
+    id: agent
+    attributes:
+      label: Agent and version
+      description: e.g. Claude Code 2.1, Codex CLI, Cursor.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true

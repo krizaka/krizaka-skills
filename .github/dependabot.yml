@@ -1,0 +1,46 @@
+# Dependabot — the Krizaka model (weekly, grouped; krizaka/.github#332). Minor and patch are grouped and auto-merged once CI
+# is green (dependabot-automerge.yml); a major is its own pull request, never auto-merged.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Paris
+    groups:
+      minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+    commit-message:
+      prefix: "ci(deps)"
+    labels: ["area:deps"]
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Paris
+    groups:
+      krizaka:
+        patterns: ["@krizaka/*"]
+        update-types: ["minor", "patch"]
+      minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+    labels: ["area:deps"]
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7

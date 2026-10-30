@@ -1,0 +1,59 @@
+# CI of krizaka-skills. The org's node-ci runs install, lint (Prettier, markdownlint, the repository validator) and the
+# tests; this file adds what is specific to Agent Skills: the official validators (skills-ref for the Agent Skills
+# specification, `claude plugin validate` for the marketplace) and a link check.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  ci:
+    uses: krizaka/.github/.github/workflows/node-ci.yml@1002810b78ccc24e284ec8209e8e0b55ff06ea33 # main
+    permissions:
+      contents: read
+    with:
+      build-script: ""
+      format-script: format:check
+
+  standards:
+    name: Official validators
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          enable-cache: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 22
+      - name: Agent Skills specification (skills-ref)
+        run: for dir in skills/*/; do uvx --from skills-ref==0.1.1 agentskills validate "$dir"; done
+      - name: Claude Code plugin marketplace
+        run: npx --yes @anthropic-ai/claude-code@2.1.172 plugin validate --strict .
+
+  links:
+    name: Links
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --no-progress --cache --max-cache-age 1d "./**/*.md"
+          fail: true

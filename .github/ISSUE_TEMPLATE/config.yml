@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/krizaka/krizaka-skills/security/advisories/new
+    about: Privately, through a GitHub security advisory. Never in a public issue.
+  - name: Talk to Krizaka
+    url: https://www.krizaka.com/contact
+    about: Questions, partnerships and anything that is not a skill request or a bug.
