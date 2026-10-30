@@ -38,7 +38,8 @@ npx skills add krizaka/krizaka-skills --skill krizaka-quality-gate
 | `krizaka-design`      | [`krizaka-cahier-design`](./skills/krizaka-cahier-design/SKILL.md)           | building a page of a Krizaka site (the notebook look)            |
 |                       | [`krizaka-product-design`](./skills/krizaka-product-design/SKILL.md)         | building a product screen with `@krizaka/ui`                     |
 |                       | [`krizaka-lab-design`](./skills/krizaka-lab-design/SKILL.md)                 | building a 3D or scroll-driven showroom page                     |
-| `krizaka-engineering` | [`krizaka-agent-cto`](./skills/krizaka-agent-cto/SKILL.md)                   | planning and dispatching work across coding-agent sessions       |
+| `krizaka-engineering` | [`krizaka-engineering`](./skills/krizaka-engineering/SKILL.md)               | writing or reviewing code: architecture, library first, checks   |
+|                       | [`krizaka-agent-cto`](./skills/krizaka-agent-cto/SKILL.md)                   | planning and dispatching work across coding-agent sessions       |
 |                       | [`krizaka-lean-orchestration`](./skills/krizaka-lean-orchestration/SKILL.md) | designing how several agents cooperate without loops             |
 |                       | [`krizaka-context-hygiene`](./skills/krizaka-context-hygiene/SKILL.md)       | a long or expensive agent session                                |
 |                       | [`krizaka-quality-gate`](./skills/krizaka-quality-gate/SKILL.md)             | setting up CI or shipping an LLM feature with reliable outputs   |
@@ -50,6 +51,12 @@ npx skills add krizaka/krizaka-skills --skill krizaka-quality-gate
 
 The subagents are Krizaka's birds — each carries one promise: the falcon watches, the owl reads, the duck builds the
 engine, the beaver builds what holds.
+
+## Generated references
+
+`skills/krizaka-engineering/references/packages.md` lists what every published `@krizaka/*` package exports. It is
+generated from the npm registry by `npm run gen:packages` and kept current by the daily « Packages reference » workflow,
+which opens a pull request when a release changes it. Never edit it by hand.
 
 ## How it is checked
 

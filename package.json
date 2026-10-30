@@ -18,7 +18,8 @@
     "lint:md": "markdownlint-cli2",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "gen:packages": "node scripts/gen-packages-reference.mjs"
   },
   "devDependencies": {
     "@krizaka/config": "^0.18.0",
