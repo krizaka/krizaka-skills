@@ -1,0 +1,58 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "krizaka-skills",
+  "owner": {
+    "name": "Technologies Krizaka Inc.",
+    "email": "contact@krizaka.com"
+  },
+  "metadata": {
+    "description": "Agent Skills and subagents by Krizaka: design languages, agent delivery rules, quality gates and honest growth.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "krizaka-design",
+      "description": "Krizaka's design languages: the Cahier look of the company sites, plain Krizaka UI for products, and 3D showroom pages.",
+      "version": "0.1.0",
+      "source": "./",
+      "strict": false,
+      "license": "Apache-2.0",
+      "homepage": "https://github.com/krizaka/krizaka-skills",
+      "category": "design",
+      "skills": ["./skills/krizaka-cahier-design", "./skills/krizaka-product-design", "./skills/krizaka-lab-design"]
+    },
+    {
+      "name": "krizaka-engineering",
+      "description": "How Krizaka runs coding agents: lanes and PR slices, lean orchestration, context hygiene, the quality gate, and four bird subagents.",
+      "version": "0.1.0",
+      "source": "./",
+      "strict": false,
+      "license": "Apache-2.0",
+      "homepage": "https://github.com/krizaka/krizaka-skills",
+      "category": "development",
+      "skills": [
+        "./skills/krizaka-agent-cto",
+        "./skills/krizaka-lean-orchestration",
+        "./skills/krizaka-context-hygiene",
+        "./skills/krizaka-quality-gate"
+      ],
+      "agents": [
+        "./agents/falcon-cto.md",
+        "./agents/duck-ai-engine.md",
+        "./agents/owl-document-mind.md",
+        "./agents/beaver-builder.md"
+      ]
+    },
+    {
+      "name": "krizaka-growth",
+      "description": "Honest technical posts across social platforms: formats, proof-based hooks, official APIs and safe automation.",
+      "version": "0.1.0",
+      "source": "./",
+      "strict": false,
+      "license": "Apache-2.0",
+      "homepage": "https://github.com/krizaka/krizaka-skills",
+      "category": "productivity",
+      "skills": ["./skills/krizaka-social-growth"]
+    }
+  ]
+}

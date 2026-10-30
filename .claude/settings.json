@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx --no-install krizaka-edit-check",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

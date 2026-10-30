@@ -1,0 +1,12 @@
+// markdownlint (https://github.com/DavidAnson/markdownlint): the defaults, minus what Prettier owns or our prose needs.
+{
+  "config": {
+    "default": true,
+    "MD013": false, // line length: Prettier wraps
+    "MD033": false, // inline HTML: allowed in READMEs (badges)
+    "MD041": false, // SKILL.md and agents start with front matter, not a heading
+    "MD060": false, // table column alignment: Prettier aligns
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules/**", "CHANGELOG.md", "LICENSE"],
+}

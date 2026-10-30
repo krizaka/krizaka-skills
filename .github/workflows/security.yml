@@ -1,0 +1,18 @@
+# Secret scanning (gitleaks) and workflow security (zizmor) through the org's shared workflow (rule `security-scan`).
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    name: Security scan
+    permissions:
+      contents: read
+    uses: krizaka/.github/.github/workflows/security-scan.yml@1002810b78ccc24e284ec8209e8e0b55ff06ea33 # main

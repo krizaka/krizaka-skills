@@ -1,0 +1,31 @@
+name: Skill request
+description: Propose a new skill or subagent, or a change to an existing one.
+labels: ["type:feat"]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill or subagent
+      description: An existing name (e.g. krizaka-quality-gate) or the name you propose (lowercase, hyphens).
+    validations:
+      required: true
+  - type: textarea
+    id: when
+    attributes:
+      label: When should an agent use it?
+      description: The situations that should trigger it — this becomes the description.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What should it teach or do?
+    validations:
+      required: true
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public content
+      options:
+        - label: My request contains no secret, private path, personal data or confidential business information.
+          required: true

@@ -1,0 +1,34 @@
+{
+  "name": "krizaka-skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent Skills and subagents by Krizaka, installable as a Claude Code plugin marketplace.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krizaka/krizaka-skills"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-skills.mjs",
+    "lint": "npm run lint:md && npm run validate",
+    "lint:md": "markdownlint-cli2",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@krizaka/config": "^0.18.0",
+    "ajv": "^8.20.0",
+    "markdownlint-cli2": "^0.24.0",
+    "prettier": "^3.9.10",
+    "yaml": "^2.9.1"
+  },
+  "overrides": {
+    "re2js": "^2.9.1",
+    "katex": "^0.19.1"
+  }
+}
