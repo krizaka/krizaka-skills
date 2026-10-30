@@ -109,7 +109,7 @@ export function typesEntry(manifest) {
 
 /** One package's line of the reference. */
 export async function describe(name) {
-  const manifest = await getJson(`${REGISTRY}/${name.replace("/", "%2F")}/latest`);
+  const manifest = await getJson(`${REGISTRY}/${name.replaceAll("/", "%2F")}/latest`);
   const entries = Object.keys(manifest.exports ?? {}).filter((k) => k !== "./package.json" && !k.includes("*"));
   let names = [];
   let reexports = [];
