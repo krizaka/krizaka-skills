@@ -1,3 +1,6 @@
 LICENSE
 package-lock.json
 CHANGELOG.md
+# Written by release-please (its own JSON style); checked by claude plugin validate and npm run validate.
+.claude-plugin/marketplace.json
+.release-please-manifest.json
