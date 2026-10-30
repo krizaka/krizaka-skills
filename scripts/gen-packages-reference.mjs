@@ -27,23 +27,20 @@ const getJson = async (url) => {
   return res.json();
 };
 
+/** A NUL-padded field of a tar header, as text. */
+const field = (tar, from, length) => tar.toString("utf8", from, from + length).split("\0")[0];
+
 /** The files of a gzipped npm tarball: `Map<path without "package/", text>` (regular files under 2 MB only). */
 export function untar(gz) {
   const tar = gunzipSync(gz);
   const files = new Map();
   for (let at = 0; at + 512 <= tar.length;) {
-    const name = tar.toString("utf8", at, at + 100).replace(/\0.*$/s, "");
+    const name = field(tar, at, 100);
     if (!name) break;
-    const size = Number.parseInt(
-      tar
-        .toString("utf8", at + 124, at + 136)
-        .replace(/\0.*$/s, "")
-        .trim() || "0",
-      8,
-    );
+    const size = Number.parseInt(field(tar, at + 124, 12).trim() || "0", 8);
     const type = tar.toString("utf8", at + 156, at + 157);
     if ((type === "0" || type === "\0") && size < 2_000_000) {
-      files.set(name.replace(/^[^/]+\//, ""), tar.toString("utf8", at + 512, at + 512 + size));
+      files.set(name.slice(name.indexOf("/") + 1), tar.toString("utf8", at + 512, at + 512 + size));
     }
     at += 512 + Math.ceil(size / 512) * 512;
   }
@@ -51,49 +48,55 @@ export function untar(gz) {
 }
 
 const VALUE_NAME = /^[A-Za-z_$][\w$]*$/;
+const sorted = (set) => [...set].sort((a, b) => a.localeCompare(b));
 
-/** The value names a declaration file exports (types left out), following `export * from "./x"` inside the package. */
-export function exportedNames(files, path, seen = new Set()) {
-  if (seen.has(path) || !files.has(path)) return [];
-  seen.add(path);
-  const text = files.get(path);
-  const names = new Set();
-  for (const m of text.matchAll(/export\s*\{([^}]*)\}/g)) {
-    for (const part of m[1].split(",")) {
+/** The value names of the `export { a, b as c, type T }` lists of a declaration file (types and `default` left out). */
+function namesInLists(text) {
+  const names = [];
+  for (const [, list] of text.matchAll(/export \{([^}]*)\}/g)) {
+    for (const part of list.split(",")) {
       const item = part.trim();
-      if (!item || item.startsWith("type ")) continue;
-      const name = item
-        .split(/\s+as\s+/)
-        .pop()
-        .trim();
-      if (VALUE_NAME.test(name) && name !== "default") names.add(name);
+      const name = item.split(" as ").pop().trim();
+      if (!item.startsWith("type ") && VALUE_NAME.test(name) && name !== "default") names.push(name);
     }
   }
-  for (const m of text.matchAll(/export\s+declare\s+(?:function|const|class|let)\s+([A-Za-z_$][\w$]*)/g))
-    names.add(m[1]);
-  for (const m of text.matchAll(/export\s*\*\s*from\s*["'](\.[^"']+)["']/g)) {
-    const base = new URL(m[1], `file:///${path}`).pathname.slice(1).replace(/\.(js|mjs|cjs)$/, "");
-    const next = [`${base}.d.ts`, `${base}.d.mts`, `${base}/index.d.ts`].find((p) => files.has(p));
-    if (next) for (const n of exportedNames(files, next, seen)) names.add(n);
-  }
-  return [...names].sort((a, b) => a.localeCompare(b));
+  return names;
+}
+
+/** The names of `export declare function|const|class|let x`. */
+const declaredNames = (text) =>
+  [...text.matchAll(/export declare (?:function|const|class|let) ([A-Za-z_$][\w$]*)/g)].map((m) => m[1]);
+
+/** The modules a declaration file re-exports whole: `export * from "<module>"`. */
+const starModules = (text) => [...text.matchAll(/export \* from ["']([^"']+)["']/g)].map((m) => m[1]);
+
+/** The declaration file a relative module of `path` resolves to inside the package, if any. */
+function resolveIn(files, path, module) {
+  const base = new URL(module, `file:///${path}`).pathname.slice(1).replace(/\.[cm]?js$/, "");
+  return [`${base}.d.ts`, `${base}.d.mts`, `${base}/index.d.ts`].find((p) => files.has(p));
+}
+
+/** The declaration files reached from `path` through relative `export *`, `path` first. */
+function reachable(files, path, seen = new Set()) {
+  if (seen.has(path) || !files.has(path)) return [];
+  seen.add(path);
+  const next = starModules(files.get(path))
+    .filter((m) => m.startsWith("."))
+    .map((m) => resolveIn(files, path, m))
+    .filter(Boolean);
+  return [path, ...next.flatMap((p) => reachable(files, p, seen))];
+}
+
+/** The value names a declaration file exports (types left out), following `export * from "./x"` inside the package. */
+export function exportedNames(files, path) {
+  const texts = reachable(files, path).map((p) => files.get(p));
+  return sorted(new Set(texts.flatMap((t) => [...namesInLists(t), ...declaredNames(t)])));
 }
 
 /** The packages a declaration file re-exports whole (`export * from "@tanstack/react-query"`): their names are this package's too. */
-export function reexportedPackages(files, path, seen = new Set()) {
-  if (seen.has(path) || !files.has(path)) return [];
-  seen.add(path);
-  const found = new Set();
-  for (const m of files.get(path).matchAll(/export\s*\*\s*from\s*["']([^"']+)["']/g)) {
-    if (!m[1].startsWith(".")) {
-      found.add(m[1]);
-      continue;
-    }
-    const base = new URL(m[1], `file:///${path}`).pathname.slice(1).replace(/\.(js|mjs|cjs)$/, "");
-    const next = [`${base}.d.ts`, `${base}.d.mts`, `${base}/index.d.ts`].find((p) => files.has(p));
-    if (next) for (const n of reexportedPackages(files, next, seen)) found.add(n);
-  }
-  return [...found].sort((a, b) => a.localeCompare(b));
+export function reexportedPackages(files, path) {
+  const texts = reachable(files, path).map((p) => files.get(p));
+  return sorted(new Set(texts.flatMap((t) => starModules(t).filter((m) => !m.startsWith(".")))));
 }
 
 /** The declaration file of the package's main entry. */
@@ -127,7 +130,7 @@ const code = (s) => `\`${s}\``;
 /** The Markdown of the reference (deterministic: sorted, no date). */
 export function render(packages) {
   const lines = [
-    "# @krizaka/\\* packages — what each one exports",
+    String.raw`# @krizaka/\* packages — what each one exports`,
     "",
     "<!-- Generated by scripts/gen-packages-reference.mjs from the npm registry. Do not edit: run the script. -->",
     "",
@@ -150,7 +153,7 @@ export function render(packages) {
     if (p.reexports?.length > 0) lines.push(`- Re-exports everything of: ${p.reexports.map(code).join(", ")}`);
     if (lines.at(-1) !== "") lines.push("");
   }
-  return lines.join("\n").replace(/\n+$/, "\n");
+  return `${lines.join("\n").trimEnd()}\n`;
 }
 
 export async function listPackages() {
