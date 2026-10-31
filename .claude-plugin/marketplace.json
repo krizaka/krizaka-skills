@@ -27,7 +27,7 @@
     },
     {
       "name": "krizaka-engineering",
-      "description": "How Krizaka writes and ships code: the coding standard with the library-first lookup, lanes and PR slices, lean orchestration, context hygiene, the quality gate, and four bird subagents.",
+      "description": "How Krizaka writes and ships code: the coding standard with the library-first lookup, lean orchestration, context hygiene, the quality gate, and four bird subagents.",
       "version": "0.1.0",
       "source": "./",
       "strict": false,
@@ -36,7 +36,6 @@
       "category": "development",
       "skills": [
         "./skills/krizaka-engineering",
-        "./skills/krizaka-agent-cto",
         "./skills/krizaka-lean-orchestration",
         "./skills/krizaka-context-hygiene",
         "./skills/krizaka-quality-gate"

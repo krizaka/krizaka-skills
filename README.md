@@ -39,7 +39,6 @@ npx skills add krizaka/krizaka-skills --skill krizaka-quality-gate
 |                       | [`krizaka-product-design`](./skills/krizaka-product-design/SKILL.md)         | building a product screen with `@krizaka/ui`                     |
 |                       | [`krizaka-lab-design`](./skills/krizaka-lab-design/SKILL.md)                 | building a 3D or scroll-driven showroom page                     |
 | `krizaka-engineering` | [`krizaka-engineering`](./skills/krizaka-engineering/SKILL.md)               | writing or reviewing code: architecture, library first, checks   |
-|                       | [`krizaka-agent-cto`](./skills/krizaka-agent-cto/SKILL.md)                   | planning and dispatching work across coding-agent sessions       |
 |                       | [`krizaka-lean-orchestration`](./skills/krizaka-lean-orchestration/SKILL.md) | designing how several agents cooperate without loops             |
 |                       | [`krizaka-context-hygiene`](./skills/krizaka-context-hygiene/SKILL.md)       | a long or expensive agent session                                |
 |                       | [`krizaka-quality-gate`](./skills/krizaka-quality-gate/SKILL.md)             | setting up CI or shipping an LLM feature with reliable outputs   |
