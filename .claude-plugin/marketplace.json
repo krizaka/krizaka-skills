@@ -7,13 +7,13 @@
   },
   "metadata": {
     "description": "Agent Skills and subagents by Krizaka: design languages, agent delivery rules, quality gates and honest growth.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "krizaka-design",
       "description": "Krizaka's design languages: the Cahier look of the company sites, plain Krizaka UI for products, and 3D showroom pages.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "./",
       "strict": false,
       "license": "Apache-2.0",
@@ -28,7 +28,7 @@
     {
       "name": "krizaka-engineering",
       "description": "How Krizaka writes and ships code: the coding standard with the library-first lookup, lean orchestration, context hygiene, the quality gate, and four bird subagents.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "./",
       "strict": false,
       "license": "Apache-2.0",
@@ -50,7 +50,7 @@
     {
       "name": "krizaka-growth",
       "description": "Honest technical posts across social platforms: formats, proof-based hooks, official APIs and safe automation.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "./",
       "strict": false,
       "license": "Apache-2.0",
