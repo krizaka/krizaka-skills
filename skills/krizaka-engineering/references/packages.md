@@ -69,11 +69,17 @@ Krizaka's data visualisation: typed, declarative React charts (line, area, bar, 
 - Entry points: `@krizaka/charts/bar`, `@krizaka/charts/geo`, `@krizaka/charts/pie`, `@krizaka/charts/card`, `@krizaka/charts/goal`, `@krizaka/charts/line`, `@krizaka/charts/chart`, `@krizaka/charts/gauge`, `@krizaka/charts/genui`, `@krizaka/charts/globe`, `@krizaka/charts/radar`, `@krizaka/charts/funnel`, `@krizaka/charts/native`, `@krizaka/charts/sankey`, `@krizaka/charts/ticker`, `@krizaka/charts/credits`, `@krizaka/charts/heatmap`, `@krizaka/charts/latency`, `@krizaka/charts/scatter`, `@krizaka/charts/treemap`, `@krizaka/charts/earnings`, `@krizaka/charts/provider`, `@krizaka/charts/sparkline`, `@krizaka/charts/throughput`, and 1 more
 - Exports: `Accessor`, `AreaChart`, `AreaChartProps`, `BarChart`, `BarChartProps`, `Bid`, `BrandId`, `CalendarHeatmap`, `CalendarHeatmapProps`, `Candlestick`, `CandlestickProps`, `CartesianProps`, `CategoryFormat`, `Chart`, `ChartCard`, `ChartCardProps`, `ChartKind`, `ChartLabels`, `ChartLabelsInput`, `ChartProps`, `ChartsProvider`, `ChartsProviderProps`, `ChartsSettings`, `correlation`, `CREDIT_LABELS`, `CreditLabels`, `CreditUsage`, `CreditUsageProps`, `Datum`, `DEFAULT_LABELS`, `DEFAULT_STATUSES`, `DIVERGING`, `DonutChart`, `EARNINGS_LABELS`, `EarningsChart`, `EarningsChartProps`, `EarningsLabels`, `formatDuration`, `Funnel`, `FunnelProps`, and 63 more
 
-## @krizaka/config 0.18.0
+## @krizaka/config 0.20.0
 
 The shared configuration of every Krizaka JavaScript repository: ESLint flat configs (base, Next.js, the four UI rules, the stack rules, no locale ternary), the « Krizaka first » covered-domains map and the dependency-cruiser preset generated from it (ref
 
 - Entry points: `@krizaka/config/eslint`, `@krizaka/config/ratchet`, `@krizaka/config/patterns`, `@krizaka/config/prettier`, `@krizaka/config/eslint/next`, `@krizaka/config/editorconfig`, `@krizaka/config/eslint/stack`, `@krizaka/config/eslint/plugin`, `@krizaka/config/covered-domains`, `@krizaka/config/eslint/env-names`, `@krizaka/config/known-violations`, `@krizaka/config/eslint/code-rules`, `@krizaka/config/eslint/krizaka-ui`, `@krizaka/config/dependency-cruiser`, `@krizaka/config/eslint/ui-warnings`, `@krizaka/config/tsconfig/base.json`, `@krizaka/config/tsconfig/next.json`, `@krizaka/config/covered-domains.json`, `@krizaka/config/server-client-boundary`, `@krizaka/config/eslint/no-locale-ternary`, `@krizaka/config/tsconfig/react-native.json`, `@krizaka/config/tsconfig/react-library.json`
+
+## @krizaka/contract 0.1.0
+
+Declare a response contract once (zod) and assert it everywhere the answer is acted on: route tests, journeys, synthetic monitors and the fetch wrappers of runtime boundaries. A 204 with no body, a missing field, an undefined or NaN count, an empty string
+
+- Exports: `assertContract`, `ContractError`, `count`, `defineContract`, `expectContract`, `expectProviderAnswer`, `fetchContract`, `nonEmptyList`, `text`
 
 ## @krizaka/coupons 0.1.3
 
@@ -103,7 +109,7 @@ Service discovery for every Krizaka mobile app: load a signed manifest of backen
 - Entry points: `@krizaka/discovery/sign`, `@krizaka/discovery/react`
 - Exports: `base64ToBytes`, `bytesToBase64`, `canonicalize`, `chunkedStorage`, `compareVersions`, `createDiscovery`, `Discovery`, `DiscoveryOptions`, `DiscoveryStorage`, `Environment`, `Gate`, `isAllowedUrl`, `isVersion`, `KRIZAKA_HOST_SUFFIXES`, `KRIZAKA_MANIFEST_URLS`, `KRIZAKA_PUBLIC_KEYS`, `LocalizedMessage`, `Manifest`, `ManifestBody`, `normalizeBase`, `parseManifest`, `pickMessage`, `PublicKeys`, `RefreshResult`, `ResolvedService`, `SCHEMA_VERSION`, `ServiceBases`, `ServiceEntry`, `ServiceSource`, `ServiceStatus`, `verifyManifest`, `VerifyResult`
 
-## @krizaka/email 0.4.0
+## @krizaka/email 0.5.0
 
 One email system for every Krizaka app: typed, branded, bilingual templates on React Email (email-safe HTML, a plain-text part always generated), brand themes from @krizaka/tokens, and a sendEmail() adapter with one-click unsubscribe headers, idempotency,
 
@@ -181,12 +187,12 @@ Orazaka shared contracts: TypeScript types, Zod schemas and design tokens (frame
 
 - Exports: `ActorConsumptionSchema`, `ArtefactTypeSchema`, `AutomationRunSchema`, `AutomationRunStatusSchema`, `AutomationSchema`, `availableCredits`, `base64ToBytes`, `BillableCapabilitySchema`, `BillableUnitSchema`, `BlueprintStatusSchema`, `BlueprintVersionSchema`, `bytesToLatin1`, `capabilityForModelCategory`, `CapabilityUsageSchema`, `CatalogModelSchema`, `ComposerInputKindSchema`, `ComposerStudioSchema`, `CostEstimateSchema`, `createInspector`, `CreditBucketSchema`, `DEFAULT_MAX_BYTES`, `documentRules`, `EntitlementSchema`, `EntitlementSnapshotSchema`, `formatCredits`, `formatPrice`, `InstallationSchema`, `InstallationStatusSchema`, `IntentEnvelopeSchema`, `IntentTokenSchema`, `InterceptorPolicySchema`, `isModelPriced`, `isTerminalRun`, `JobPageSchema`, `JobSchema`, `JobStatusSchema`, `LockReasonSchema`, `MarginPreviewSchema`, `maxPdfBytesFor`, `minimalContext`, and 38 more
 
-## @krizaka/org 0.5.0
+## @krizaka/org 0.6.0
 
 The public facts about Krizaka, in one validated JSON that every footer, site and app reads: legal name, NEQ, « Fait à Montréal » in French and English, brand marks, default avatars and banners, the live products and sites, the public contact, the footer
 
 - Entry points: `@krizaka/org/org.json`, `@krizaka/org/org.schema.json`
-- Exports: `APP_SCHEMA_URL`, `apps`, `appSchema`, `CAST`, `CAST_VERSION`, `castMedia`, `castOf`, `CDN`, `DEFAULT_KINDS`, `defaultFor`, `defaults`, `defaultUrl`, `fetchDefaults`, `footerLine`, `listDefaults`, `localized`, `org`, `ORG_SCHEMA_URL`, `ORG_URL`, `orgSchema`, `persona`, `personaByRole`, `seedFingerprint`, `seedHash`
+- Exports: `APP_SCHEMA_URL`, `apps`, `appSchema`, `CAST`, `CAST_VERSION`, `castMedia`, `castOf`, `CDN`, `DEFAULT_KINDS`, `defaultFor`, `defaults`, `defaultUrl`, `familyEntry`, `familyName`, `fetchDefaults`, `footerLine`, `listDefaults`, `localized`, `org`, `ORG_SCHEMA_URL`, `ORG_URL`, `orgSchema`, `persona`, `personaByRole`, `seedFingerprint`, `seedHash`
 
 ## @krizaka/organize 0.5.1
 
@@ -202,14 +208,14 @@ The transactional outbox of every Krizaka product: an event written in the calle
 - Entry points: `@krizaka/outbox/testkit`, `@krizaka/outbox/settings`
 - Exports: `backoffSeconds`, `checkMessage`, `checkSettings`, `ClaimOptions`, `Clock`, `consumeOnce`, `createOutbox`, `dbOutboxStore`, `drainOnce`, `FAIL_STATE`, `FailOutcome`, `memoryOutboxStore`, `NewMessage`, `OUTBOX_BOUNDS`, `OUTBOX_CODE`, `OUTBOX_DEFAULTS`, `OutboxCode`, `OutboxError`, `OutboxMessage`, `outboxSchema`, `OutboxSettings`, `OutboxStats`, `OutboxStore`, `Query`, `runWorker`
 
-## @krizaka/pacer 0.1.0
+## @krizaka/pacer 0.2.0
 
 Cadence for every Krizaka app: debounce and throttle (functions and React hooks), a job queue with concurrency, priority, retries with backoff, pause and resume per job, and a client rate limiter that learns from a server's Problem Details — TanStack Pace
 
 - Entry points: `@krizaka/pacer/react`
-- Exports: `AddOptions`, `Backoff`, `createQueue`, `debounce`, `JobContext`, `JobRun`, `JobSnapshot`, `JobStatus`, `Queue`, `QueueOptions`, `RateLimiter`, `retryAtOf`, `throttle`
+- Exports: `AddOptions`, `Backoff`, `createQueue`, `debounce`, `JobContext`, `JobRun`, `JobSnapshot`, `JobStatus`, `mapConcurrent`, `Queue`, `QueueOptions`, `RateLimiter`, `retryAtOf`, `throttle`
 
-## @krizaka/page-audit 0.6.0
+## @krizaka/page-audit 0.7.0
 
 The page audit of every Krizaka app, in one place: HTTP status, empty main, horizontal overflow, a card out of its panel, sections covering each other, a column cut off, top chrome overlaps, unnamed buttons, empty headings. Runs in a real browser (Playwri
 
@@ -263,14 +269,14 @@ A Krizaka product's configuration as data: a typed registry (flags, integers, ch
 
 - Exports: `ALL_SCOPES`, `AVAILABILITY`, `bilingual`, `choice`, `dbSettings`, `definePrices`, `defineSettings`, `describePrices`, `describeSettings`, `findTypedPrices`, `flag`, `GLOBAL`, `GLOBAL_ONLY`, `integer`, `KIND`, `memoryPriceStore`, `postgresSettings`, `priceCatalogue`, `PriceError`, `priceSchema`, `pricesMigration`, `pricesSchema`, `priceStore`, `publicCatalogue`, `Query`, `resolveValue`, `SCOPE`, `SCOPES_BY_SPECIFICITY`, `SEED_FROM`, `seedLegacySettings`, `seedVersionId`, `SettingsError`, `settingsMigration`, `settingsSchema`, `subset`, `text`, `UNIT`, `WORKSPACE_SCOPES`
 
-## @krizaka/storage 0.8.1
+## @krizaka/storage 0.11.0
 
 Files behind one port for every Krizaka product: put with a content-hashed name, get, head, delete, list, signed and public URLs; adapters over an injected fetch for an HTTP object store and any S3-compatible bucket (Signature V4, no SDK), and a local fol
 
 - Entry points: `@krizaka/storage/node`, `@krizaka/storage/opendal`, `@krizaka/storage/resolve`, `@krizaka/storage/testkit`, `@krizaka/storage/settings`, `@krizaka/storage/provider-admin`
-- Exports: `AdapterInput`, `assertKey`, `bucketStore`, `checkEndpoint`, `checkEndpointDns`, `Clock`, `CLOUD_CONNECTORS`, `cloudConnector`, `connectionAccessToken`, `COUNTRY_OF_REGION`, `countryOf`, `createProviderRegistry`, `createStorage`, `defaultProviderRegistry`, `defineLayout`, `describeStore`, `dropboxAuthorizeUrl`, `dropboxStore`, `encryptedStore`, `exchangeDropboxCode`, `FetchLike`, `FieldSchema`, `finishConnection`, `folderStore`, `hashedName`, `hashOf`, `isPrivateAddress`, `keyIdOf`, `Keyring`, `Layout`, `localKeyring`, `LocalKeys`, `memoryObjectStore`, `NoticeKey`, `ObjectInfo`, `ObjectStore`, `open`, `OpenContext`, `OpenedAdapter`, `OpenedProvider`, and 60 more
+- Exports: `AdapterInput`, `assertKey`, `assertTenantId`, `bucketStore`, `checkEndpoint`, `checkEndpointDns`, `Clock`, `CLOUD_CONNECTORS`, `CLOUD_KEY_KINDS`, `cloudConnector`, `cloudKeyService`, `connectionAccessToken`, `contextText`, `COUNTRY_OF_REGION`, `countryOf`, `createProviderRegistry`, `createStorage`, `dbTenantKeyStore`, `defaultProviderRegistry`, `defineLayout`, `describeStore`, `dropboxAuthorizeUrl`, `dropboxStore`, `encryptedStore`, `exchangeDropboxCode`, `FetchLike`, `FieldSchema`, `finishConnection`, `folderStore`, `hashedName`, `hashOf`, `isPrivateAddress`, `KeyAuditNote`, `KeyContext`, `keyIdOf`, `Keyring`, `KeyService`, `Layout`, `localKeyring`, `LocalKeys`, and 89 more
 
-## @krizaka/tailwind 3.77.0
+## @krizaka/tailwind 3.79.0
 
 The Krizaka Tailwind CSS v4 preset: the semantic --kz-* tokens as utilities (bg-surface-1, text-fg-secondary, border-border-default, text-accent, rounded-xl…), illustration-only light/dark variants and the Krizaka easing.
 
@@ -280,18 +286,18 @@ Date arithmetic for every Krizaka backend, in one place: add seconds, minutes an
 
 - Exports: `addHours`, `addMinutes`, `addSeconds`, `differenceInMilliseconds`, `differenceInSeconds`, `isAfter`, `isBefore`, `isCanadianPostalCode`, `isE164Phone`, `isEmail`, `isHttpUrl`, `isIsoDate`, `isSlug`, `subHours`, `subMinutes`, `subSeconds`
 
-## @krizaka/tokens 3.77.0
+## @krizaka/tokens 3.79.0
 
 The Krizaka semantic design tokens (--kz-*) and the brand themes (Krizaka, Orazaka, Yomizaka, Akinaza): one DTCG source compiled to CSS (dark, light, media invariants), typed constants and React Native themes.
 
 - Entry points: `@krizaka/tokens/native`, `@krizaka/tokens/tokens.css`, `@krizaka/tokens/shop-presets`, `@krizaka/tokens/appearance.css`, `@krizaka/tokens/shop-presets.css`, `@krizaka/tokens/brands/scoped.css`, `@krizaka/tokens/brands/akinaza.css`, `@krizaka/tokens/brands/krizaka.css`, `@krizaka/tokens/brands/orazaka.css`, `@krizaka/tokens/brands/yomizaka.css`
 - Exports: `appearance`, `brands`, `marks`, `tokens`, `typeScale`, `values`
 
-## @krizaka/ui 3.77.0
+## @krizaka/ui 3.79.0
 
 The Krizaka front-end platform's components: the primitives (button, card, dialog, toast, menu, field, tabs, chip, switch, slider, command palette, theme, countdown…) on the semantic --kz-* tokens, the animated marks (Krizaka, Orazaka, Yomizaka, Akinaza)
 
-- Entry points: `@krizaka/ui/cn`, `@krizaka/ui/kbd`, `@krizaka/ui/map`, `@krizaka/ui/toc`, `@krizaka/ui/card`, `@krizaka/ui/chat`, `@krizaka/ui/chip`, `@krizaka/ui/form`, `@krizaka/ui/list`, `@krizaka/ui/page`, `@krizaka/ui/shop`, `@krizaka/ui/slot`, `@krizaka/ui/stat`, `@krizaka/ui/tabs`, `@krizaka/ui/wall`, `@krizaka/ui/alert`, `@krizaka/ui/badge`, `@krizaka/ui/field`, `@krizaka/ui/flock`, `@krizaka/ui/genui`, `@krizaka/ui/meter`, `@krizaka/ui/sites`, `@krizaka/ui/stuck`, `@krizaka/ui/theme`, and 208 more
+- Entry points: `@krizaka/ui/cn`, `@krizaka/ui/kbd`, `@krizaka/ui/map`, `@krizaka/ui/toc`, `@krizaka/ui/card`, `@krizaka/ui/chat`, `@krizaka/ui/chip`, `@krizaka/ui/form`, `@krizaka/ui/list`, `@krizaka/ui/page`, `@krizaka/ui/shop`, `@krizaka/ui/slot`, `@krizaka/ui/stat`, `@krizaka/ui/tabs`, `@krizaka/ui/wall`, `@krizaka/ui/alert`, `@krizaka/ui/badge`, `@krizaka/ui/field`, `@krizaka/ui/flock`, `@krizaka/ui/genui`, `@krizaka/ui/meter`, `@krizaka/ui/sites`, `@krizaka/ui/stuck`, `@krizaka/ui/theme`, and 209 more
 - Exports: `AkinazaLogo`, `cx`, `KrizakaLogo`, `MotionObserver`, `OrazakaLogo`, `ProductLogo`, `RotatingWord`, `WuSamaMark`, `YomizakaLogo`
 
 ## @krizaka/video 0.2.2
